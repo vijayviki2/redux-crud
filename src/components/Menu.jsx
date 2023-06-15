@@ -7,10 +7,10 @@ function Menu() {
         <div className="container">
             <NavLink to={`/`} className="navbar-brand">ReduxCrud</NavLink>
             <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target='#menu' >
-                <span className='navbar-toggler-icon'></span>
+                <span className='navbar-toggler-icon float-end'></span>
             </button>
 
-            <div className="collapse navbar-collapse" is="menu">
+            <div className="collapse navbar-collapse" id="menu">
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <NavLink to={`/`} className="nav-link">Home</NavLink>

@@ -19,7 +19,7 @@ const UserApi = {
     },
     create: async (user) => {
         return axiosIns.request({
-            method:'POSt',
+            method:'POST',
             url:`/users/add`,
             data : user
         })
@@ -29,6 +29,12 @@ const UserApi = {
             method: "PATCH",
             url: `/users/${id}`,
             data:  user
+        })
+    },
+    delete: async (id) => {
+        return axiosIns.request({
+            mathod: "DELETE",
+            url: `/users/${id}`
         })
     },
 }
