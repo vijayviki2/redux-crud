@@ -11,7 +11,9 @@ return res.data.users
 }) 
 //create
 export const createUser = createAsyncThunk("users/create", async (users) =>{
-
+console.log('action =', users)
+const res = await UserApi.create(users)
+return res.data
 })
 //update
 export const  updateUser = createAsyncThunk("users/update", async({user,id}) => {
