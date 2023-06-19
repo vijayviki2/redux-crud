@@ -8,7 +8,6 @@ import UserApi from '../API/UserApi'
 
 function Update() {
   const [user,setUser] = useState({
-    
       firstName: ' ',
       lastName: ' ',
       age: 0,
@@ -28,7 +27,7 @@ function Update() {
       setGender(res.data.gender)
     }
     readValue()
-  })
+  },[])
 
   const readValue = async(e) => {
     const { name,value } = e.target
@@ -42,13 +41,13 @@ function Update() {
         ...user,
         gender
       }
-      console.log(`newuser =`, newUser)
-      dispatch(updateUser(newUser))
+      console.log(`Update user =`, newUser)
+      dispatch(updateUser({ user: newUser,id:params.id}))
       .unwrap()
       .then(res => {
-        toast.success('Update User Created successfully')
+        toast.success('user updated successfully')
         navigate(`/`)
-      })
+      }).catch(err => toast.error(err.response.data.msg))
     } catch(err) {
       toast.error(err.msg)
     }
@@ -67,15 +66,15 @@ function Update() {
           <form autoComplete='off' onSubmit={submitHandler}>
             <div className="form-group mt-2">
               <label htmlFor="firstName">First Name</label>
-              <input type="text" name='firstName'value={user.firstName} onChange={readValue} id='firstName' className='form-control' required />
+              <input type="text" name='firstName' value={user.firstName} onChange={readValue} id='firstName' className='form-control' required />
             </div>
             <div className="form-group mt-2">
               <label htmlFor="lastName">Last Name</label>
-              <input type="text" name='lastName'value={user.lastName} onChange={readValue} id='lastName' className='form-control' required />
+              <input type="text" name='lastName' value={user.lastName} onChange={readValue} id='lastName' className='form-control' required />
             </div>
             <div className="form-group mt-2">
               <label htmlFor="age">Age</label>
-              <input type="number" name='age'value={user.age} onChange={readValue} id='age' className='form-control' required />
+              <input type="number" name='age' value={user.age} onChange={readValue} id='age' className='form-control' required />
             </div>
             <div className="form-group mt-2">
               <div className="form-check form-check-inline">
@@ -93,11 +92,11 @@ function Update() {
               
               <div className="form-group mt-2">
               <label htmlFor="email">Email</label>
-              <input type="email" name='email'value={user.email} onChange={readValue} id='email' className='form-control' required />
+              <input type="email" name='email' value={user.email} onChange={readValue} id='email' className='form-control' required />
             </div>
             <div className="form-group mt-2">
               <label htmlFor="phone">Phone</label>
-              <input type="text" name='phone'value={user.phone} onChange={readValue} id='phone' className='form-control' required />
+              <input type="text" name='phone' value={user.phone} onChange={readValue} id='phone' className='form-control' required />
             </div>
             <div className="form-group mt-2">
               <input type="submit" value="Update User" className="btn btn-success" />

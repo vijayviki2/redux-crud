@@ -17,9 +17,13 @@ return res.data
 })
 //update
 export const  updateUser = createAsyncThunk("users/update", async({user,id}) => {
-
+    console.log(`updated users =`, user," and id =", id);
+    const res = await UserApi.update(user,id)
+    return res.data
 })
 //delete
 export const deleteUser = createAsyncThunk("users/delete",async({id}) =>{
-
+    console.log(`delete user id =`,id)
+    const res =  await UserApi.delete(id)
+    return {id}
 })
